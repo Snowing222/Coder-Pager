@@ -23,13 +23,13 @@ const Auth = () => {
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
     }
-
+    
+    //submit formdata to server and set cookie data with response data
     const handleSubmit = async (e) => {
         e.preventDefault();
-        
         const {username, password, phoneNumber,avatarURL } = form
         const URL = 'http://localhost:5000/auth';
-
+      
         const { data: { token, userId, hashedPassword, fullName } } = await axios.post(`${URL}/${isSignup ? 'signup' : 'login'}`, {
             username, password, fullName: form.fullName, phoneNumber, avatarURL,
         });
@@ -47,8 +47,6 @@ const Auth = () => {
 
         window.location.reload()
     }
-
-
 
     const switchMode = () => {
         setIsSignup((prevIsSignup) => !prevIsSignup);
@@ -132,6 +130,7 @@ const Auth = () => {
                             <button>{isSignup ? "Sign Up" : "Sign In"}</button>
                         </div>
                     </form>
+                    {/* switch sign up and login form by toggle setIsSignup state */}
                     <div className="auth__form-container_fields-account">
                         <p>
                             {isSignup
