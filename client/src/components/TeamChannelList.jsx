@@ -1,7 +1,8 @@
-import React from 'react'
-import { AddChannel } from '../assets'
+import React from 'react';
 
-const TeamChannelList = ({children, error = false, loading, type}) => {
+import { AddChannel } from '../assets';
+
+const TeamChannelList = ({ setToggleContainer, children, error = false, loading, type, isCreating, setIsCreating, setCreateType, setIsEditing }) => {
     if(error) {
         return type === 'team' ? (
             <div className="team-channel-list">
@@ -21,7 +22,7 @@ const TeamChannelList = ({children, error = false, loading, type}) => {
             </div>
         )
     }
-   
+
     return (
         <div className="team-channel-list">
             <div className="team-channel-list__header">
